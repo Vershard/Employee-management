@@ -4,6 +4,7 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 
 
+
 const team = [];
 
 function mainMenu(){
@@ -86,21 +87,48 @@ function mainMenu(){
             addTeamMembers()
         })
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     }
 
 
     function addIntern(){
         console.log("We  chose to make an Intern so now use inquirer.prompt to ask them questions and  create new Intern and push to team array")
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "internName",
+                message: "What is the Interns name?"
+            },
+            {
+                type: "input",
+                name: "internEmail",
+                message: "What is the Interns email?"
+            },
+            {
+                type: "input",
+                name: "schoolName",
+                message: "What is the Intern school name?"
+            }
+        ]).then(answers =>{
+            const Intern = new Intern(answers.internName, answers.internEmail, answers.schoolName)
+            team.push(intern)
+            console.log("NEW TEAM MEMBER", team)
+            addTeamMembers()
+        })
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     }
 
     function renderTeam(){
