@@ -81,8 +81,8 @@ function mainMenu(){
                 message: "What is the Engineer office number?"
             }
         ]).then(answers =>{
-            const Engineer = new Engineer(answers.engineerName, answers.gitHub, answers.engineerEmail, answers.engineerNumber)
-            team.push(engineer)
+            const newEngineer = new Engineer(answers.engineerName, answers.gitHub, answers.engineerEmail, answers.engineerNumber)
+            team.push(newEngineer)
             console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
@@ -110,8 +110,8 @@ function mainMenu(){
                 message: "What is the Intern school name?"
             }
         ]).then(answers =>{
-            const Intern = new Intern(answers.internName, answers.internEmail, answers.schoolName)
-            team.push(intern)
+            const newIntern = new Intern(answers.internName, answers.internEmail, answers.schoolName)
+            team.push(newIntern)
             console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
