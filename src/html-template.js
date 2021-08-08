@@ -7,7 +7,7 @@ const renderTeam = team => {
     <h2 class="card-title>${manager.getName()}</h2>
     <h3 class="card-title">${manager.getRole()}
 </div>
-<div class='card-body'>
+<div class='card-body bg-primary'>
 <ul class="list-group">
 <li class="list-group-item">ID: ${manager.getId()}</li>
 <li class="list-group-item">Email: ${manager.getEmail()}</li>
@@ -24,7 +24,7 @@ const renderTeam = team => {
     <h2 class="card-title>${engineer.getName()}</h2>
     <h3 class="card-title">${engineer.getRole()}
 </div>
-<div class='card-body'>
+<div class='card-body bg-danger'>
 <ul class="list-group">
 <li class="list-group-item">ID: ${engineer.getId()}</li>
 <li class="list-group-item">Email: ${engineer.getEmail()}</li>
@@ -41,7 +41,7 @@ const renderTeam = team => {
     <h2 class="card-title>${intern.getName()}</h2>
     <h3 class="card-title">${intern.getRole()}
 </div>
-<div class='card-body'>
+<div class='card-body bg-success'>
 <ul class="list-group">
 <li class="list-group-item">ID: ${intern.getId()}</li>
 <li class="list-group-item">Email: ${intern.getEmail()}</li>
@@ -52,7 +52,7 @@ const renderTeam = team => {
     }
 
     const html = [];
-// console.log("HTML TEMPLATE PAGEEE",team)
+
     html.push(team.filter(employee => employee.getRole() === "Manager").map(manager => renderManager(manager)))
 
     html.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => renderEngineer(engineer)).join(''))
