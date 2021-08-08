@@ -40,7 +40,7 @@ function mainMenu(){
         ]).then(answers =>{
             const manager = new Manager(answers.managersName, answers.managersId, answers.managersEmail, answers.managersNumber)
             team.push(manager)
-            console.log("NEW TEAM MEMBER", team)
+            // console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
     }
@@ -89,7 +89,7 @@ function mainMenu(){
         ]).then(answers =>{
             const newEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.gitHub)
             team.push(newEngineer)
-            console.log("NEW TEAM MEMBER", team)
+            // console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
     
@@ -98,7 +98,7 @@ function mainMenu(){
 
 
     function addIntern(){
-        console.log("We  chose to make an Intern so now use inquirer.prompt to ask them questions and  create new Intern and push to team array")
+        // console.log("We  chose to make an Intern so now use inquirer.prompt to ask them questions and  create new Intern and push to team array")
         inquirer.prompt([
             {
                 type: "input",
@@ -123,7 +123,7 @@ function mainMenu(){
         ]).then(answers =>{
             const newIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.schoolName)
             team.push(newIntern)
-            console.log("NEW TEAM MEMBER", team)
+            // console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
     
@@ -131,6 +131,7 @@ function mainMenu(){
     }
 
     function renderTeam(){
+        console.log(render(team));
         if(!fs.existsSync(outputDirectory)){
             fs.mkdirSync(outputDirectory)
         }
