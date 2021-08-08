@@ -135,7 +135,7 @@ function mainMenu(){
         if(!fs.existsSync(outputDirectory)){
             fs.mkdirSync(outputDirectory)
         }
-        // console.log(JSON.stringify(team))
+        
                 fs.writeFileSync(outputPath, render(team), "utf-8")
     }
    
