@@ -45,26 +45,26 @@ const renderTeam = team => {
 <ul class="list-group">
 <li class="list-group-item">ID: ${intern.getId()}</li>
 <li class="list-group-item">Email: ${intern.getEmail()}</li>
-<li class="list-group-item">School Name : ${intern.getSchoolName()}</li>
+<li class="list-group-item">School Name : ${intern.getSchool()}</li>
 </ul>
 </div>
 </div>`
     }
 
     const html = [];
-console.log("HTML TEMPLATE PAGEEE",team)
+// console.log("HTML TEMPLATE PAGEEE",team)
     html.push(team.filter(employee => employee.getRole() === "Manager").map(manager => renderManager(manager)))
 
     html.push(team.filter(employee => employee.getRole() === "Engineer").map(engineer => renderEngineer(engineer)).join(''))
 
-    //html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => renderManager(intern)).join(''))
+    html.push(team.filter(employee => employee.getRole() === "Intern").map(intern => renderIntern(intern)).join(''))
 
     return html.join('');
 
 }
 
 module.exports = team => {
-    `<!DOCTYPE html>
+   return `<!DOCTYPE html>
     <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -72,11 +72,11 @@ module.exports = team => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <title>Team Builder</title>
-    </head>
+    </head> 
     <body>
     <div class="container">
     <div class="row">
-    <div class="col-lg-12">${renderTeam(team)}
+    <div class="col-lg-4">${renderTeam(team)}
     </div>
     </div>
     </div>
