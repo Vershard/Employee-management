@@ -2,7 +2,13 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer"); 
 const Intern = require("./lib/Intern"); 
 const inquirer = require("inquirer");
+const path = require('path');
+const fs = require('fs');
 
+const outputDirectory = path.resolve(__dirname, "Output");
+const outputPath = path.join(outputDirectory, "team.html")
+
+const render = require('./src/html-template.js');
 
 
 const team = [];
@@ -67,8 +73,8 @@ function mainMenu(){
             },
             {
                 type: "input",
-                name: "gitHub",
-                message: "What is the Engineers Github?"
+                name: "engineerId",
+                message: "What is the Engineers ID?"
             },
             {
                 type: "input",
@@ -77,11 +83,11 @@ function mainMenu(){
             },
             {
                 type: "input",
-                name: "engineerNumber",
-                message: "What is the Engineer office number?"
-            }
+                name: "gitHub",
+                message: "What is the Engineers Github?"
+            },
         ]).then(answers =>{
-            const newEngineer = new Engineer(answers.engineerName, answers.gitHub, answers.engineerEmail, answers.engineerNumber)
+            const newEngineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.gitHub)
             team.push(newEngineer)
             console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
@@ -101,6 +107,11 @@ function mainMenu(){
             },
             {
                 type: "input",
+                name: "internId",
+                message: "What is the Interns ID?"
+            },
+            {
+                type: "input",
                 name: "internEmail",
                 message: "What is the Interns email?"
             },
@@ -110,36 +121,23 @@ function mainMenu(){
                 message: "What is the Intern school name?"
             }
         ]).then(answers =>{
-            const newIntern = new Intern(answers.internName, answers.internEmail, answers.schoolName)
+            const newIntern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.schoolName)
             team.push(newIntern)
             console.log("NEW TEAM MEMBER", team)
             addTeamMembers()
         })
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     }
 
     function renderTeam(){
-        console.log("Here you will render all the team to an output directory and output path and to a template page to make the bootstrap cards")    }
-
-// First create an Intern class and an Engineer class in the lib folder. Both will extend the Employee parent class.
-// Come bak to index.js and within respective function "addEngineer" etc etc you wll ask the questions needed, log the answers, create a new Engineer and push to the team array.
-
-
-
-
+        if(!fs.existsSync(outputDirectory)){
+            fs.mkdirSync(outputDirectory)
+        }
+        console.log(JSON.stringify(team))
+                fs.writeFileSync(outputPath, render(JSON.stringify(team)), "utf-8")
+    }
+   
 
 setUpManager()
 }
